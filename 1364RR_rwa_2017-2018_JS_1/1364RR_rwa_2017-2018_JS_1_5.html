@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<title>
+	Zadatak 5.
+	</title>
+<body>
+	
+	<script type="text/javascript">
+
+	var jmbg = prompt("Molimo Vas da unesete svoj matični broj (JMBG):");
+	var jmbgS= jmbg.toString();
+	provjeraJMBG(jmbg);
+
+	function provjeraJMBG(jmbg){
+
+		if(jmbgS.length != 13){
+			alert("Molimo Vas da unesete ispravan matični broj!");
+			return;
+		}
+		
+		var jmbg = [];
+
+		for(var i = 0; i < jmbgS.length; i++){
+			jmbg.push(parseInt(jmbgS[i]));
+		}
+
+
+		var k = 11 - ((7*(jmbg[0]+jmbg[6]) + 
+							6*(jmbg[1]+jmbg[7]) + 
+							5*(jmbg[2]+jmbg[8]) + 
+							4*(jmbg[3]+jmbg[9]) + 
+							3*(jmbg[4]+jmbg[10]) + 
+							2*(jmbg[5]+jmbg[11])) % 11);
+							
+		if(k > 9){
+			k = 0;
+		}
+
+		if(k != jmbg[12]){
+			alert("Kontrolna znamenka nije odgovarajuća. Molimo unesite ispravan JMBG!");
+			return;
+		}
+
+		var dd = jmbgS.substring(0,2);
+		var mm = jmbgS.substring(2,4);
+		var ggg = parseInt(jmbgS.substring(4,7));
+		var rr = parseInt(jmbgS.substring(7,9));
+		var bbb = parseInt(jmbgS.substring(9,12));
+		var mjesto;
+
+		if(ggg < 700){
+			ggg += 2000;
+		} else {
+			ggg += 1000;
+		}
+
+		if(dd > 0 && dd <= 31 && mm > 0 && mm <= 12){
+			document.write("Datum rođenja: ", dd, ".", mm, ".", ggg, "<br>");
+		} else {
+			alert("Niste unijeli točan JMBG. Molimo pokušajte ponovno!");
+			return;
+		}
+
+		switch(rr){
+			case 10:
+				mjesto = "Banja luka";
+				break;
+			case 11:
+				mjesto = "Bihać";
+				break;
+			case 12:
+				mjesto = "Doboj";
+				break;
+			case 13:
+				mjesto = "Goražde";
+				break;
+			case 14:
+				mjesto = "Livno";
+				break;
+			case 15:
+				mjesto = "Mostar";
+				break;
+			case 16:
+				mjesto = "Prijedor";
+				break;
+			case 17:
+				mjesto = "Sarajevo";
+				break;
+			case 18:
+				mjesto = "Tuzla";
+				break;
+			case 19:
+				mjesto = "Zenica";
+				break;
+			default:
+				mjesto = "Nije u sustavu";
+				alert("Pogresan unos!");
+				return;
+		}
+
+		document.write("Mjesto rođenja: ", mjesto, "<br>");
+
+		var spol;
+		if(bbb > 499 && bbb < 1000){
+			spol = "Ženski";
+		} else if (bbb > 0 && bbb < 500) {
+			spol = "Muški";
+		} else {
+			alert("Pogresan unos!");
+			return;
+		}
+
+		document.write("Spol: ", spol);
+	}
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<title>
+	Zadatak 3.
+	</title>
+<body>
+	
+	<h1>Tablica faktorijela</h1>
+	
+	<script type="text/javascript">
+		var x = parseInt(prompt("Unesite željeni broj: ", "0"));
+		var i;
+		
+		function faktorijel(n){
+			if(n==0) {
+				return 1;
+			}
+			return n * faktorijel(n-1);
+			}
+		
+		for(i=0; i<=x; i++){
+			document.write(i,"!=", faktorijel(i), "<br/>");
+		}
+		
+	</script>
+</body>
+</html>
